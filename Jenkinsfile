@@ -13,16 +13,16 @@ pipeline {
       }
     }
     stage('Test') {
+      steps {
+        sh 'mvn test'
+        echo 'step added to stage via Blue Ocean'
+      }
       post {
         always {
           junit 'target/surefire-reports/*.xml'
 
         }
 
-      }
-      steps {
-        sh 'mvn test'
-        echo 'step added to stage via Blue Ocean'
       }
     }
     stage('Deliver') {
